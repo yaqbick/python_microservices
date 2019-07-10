@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>My Webpage</title>
+</head>
+<body>
+
+    <h1>Upload plików</h1>
+    <p>jesteś zalaogowany jako: {{user}}</p>
+    <a href= "/logout">wyloguj się</a>
+    <div class="row pt-5">
+    <form action="/upload/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="pic" >
+        <input class='btn btn-info' type="submit">
+      </form>
+      </div>
+      
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes pt-5" >
+        {% for message in messages %}
+          <li class="alert alert-warning">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      {% if url %}
+        <img src={{url}}>
+      {% endif %}
+    {% endwith %}
+
+</body>
+</html>

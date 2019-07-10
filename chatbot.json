@@ -1,0 +1,75 @@
+{
+    "dish_type":["main","desserts","drinks"],
+    "main_dish":
+    {
+        "type":"main",
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "dessert_dish":
+    {
+        "type":"dessert",
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "drinks":
+    {
+        "type":"drinks",
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "menu":"path/to/menu.pdf",
+    "delivery":
+    {
+        "description":"description",
+        "redirection": "delivery_form"
+    },
+    "delivery_form":
+    {
+
+    },
+    "reservation_form":
+    {
+        "date":"date",
+        "time":"hour",
+        "customers_amount":"how many",
+        "tables_amount":"how many",
+        "special_wishes":"string"
+    },
+    "kids_offer":
+    {
+        "menu_images":["image/path1","image/path2"],
+        "menu_descriptions":["desc1","desc2"],
+        "attraction_images":["image/path1","image/path2"],
+        "attraction_descriptions":["desc1","desc2"]
+    },
+    "smoking":"string",
+    "promotions":
+    {
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "price_range":"string",
+    "special_menu_type":["vegetarian","vegan","allergic"],
+    "vegetarian":
+    {
+        "type":"vegetarian",
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "vegan":
+    {
+        "type":"vegan",
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "allergic":
+    {
+        "type":"allergic",
+        "images":["image/path1","image/path2"],
+        "descriptions":["desc1","desc2"]
+    },
+    "waitng":"string",
+    "parkplace":"string"
+}
+

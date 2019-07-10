@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <title>My Webpage</title>
+</head>
+
+<body>
+  <h1>Upload plików</h1>
+  <form id="rest_form" name="myForm" method="post" enctype="multipart/form-data">
+    <input id="pic1" type="file" name="pic_remote">
+  </form>
+  <button onclick="foo()">prześlij</button>
+  <input type="hidden" id="token" value='{{token}}'>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class="flashes pt-5">
+    {% for message in messages %}
+    <li class="alert alert-warning">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if url %}
+  <img src={{url}}>
+  {% endif %}
+  {% endwith %}
+
+  <script>
+
+    function foo() {
+      var files = document.querySelectorAll('#rest_form #pic1')
+      file = files[0]['files'][0]
+      var token = document.getElementById('token').value
+      console.log(token)
+
+      var formData = new FormData()
+      formData.append('files', file)
+      formData.append('token', token)
+
+      fetch("http://localhost:5000/upload/remote", {
+        method: 'POST',
+        // headers: {
+        //   'token':12345
+        //   'Accept': "multipart/form-data",
+        //   'Content-Type': "multipart/form-data"
+        // },
+        body: formData,
+      })
+        .then(res => {
+          console.log(res)
+          return res.text()
+        })
+        .then(res => {
+          console.log(res)
+        })
+    }
+
+    
+  </script>
+
+
+</body>
+
+</html>

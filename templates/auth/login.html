@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <title>Login</title>
+</head>
+
+<body>
+  <h1>Zaloguj się</h1>
+  <form id="login_form" name="loginForm" method="post">
+    <input id="login" type="text" name="login">
+    <input id ="password" type="text" name="password">
+    <input type="submit" class="btn btn-info">
+  </form>
+  <button onclick="foo()">API</button>
+  <a href= "/register">zarejestruj się</a>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class="flashes pt-5">
+    {% for message in messages %}
+    <li class="alert alert-warning">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if url %}
+  <img src={{url}}>
+  {% endif %}
+  {% endwith %}
+
+  <script>
+
+    function foo() {
+      var login = document.getElementById('login').value
+      var password = document.getElementById('password').value
+      console.log(login)
+
+      // var formData = new FormData()
+      // formData.append('login', login)
+      // formData.append('password', password)
+
+      var data = {login: login, password:password};
+
+      fetch("http://localhost:5000/login", {
+        method: 'POST',
+        headers: {
+          'Content-Type': "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => {
+          console.log(res)
+          return res.text()
+        })
+        .then(res => {
+          console.log(res)
+        })
+    }
+
+    
+  </script>
+</body>
+
+</html>

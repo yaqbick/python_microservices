@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <title>Login</title>
+</head>
+
+<body>
+  <h1>Zarejestruj się</h1>
+  <form  name="registerForm" method="post">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email">E-mail:</label>
+                <input id = "email2" type="text" name="email">
+                <label class="pt-2" for="login">Login:</label>
+                <input id="login2" type="text" name="login">
+                <label class="pt-2" for="password">Hasło:</label>
+                <input id="password2" type="text" name="password">
+                <input type="submit" class="btn btn-info">
+            </div>
+        </div> 
+  </form>
+  <button onclick="foo()">API</button>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class="flashes pt-5">
+    {% for message in messages %}
+    <li class="alert alert-warning">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if url %}
+  <img src={{url}}>
+  {% endif %}
+  {% endwith %}
+  <script>
+
+    function foo() {
+      var email =document.getElementById('email2').value
+      var login = document.getElementById('login2').value
+      var password = document.getElementById('password2').value
+      console.log(login)
+
+      var data = {email:email, login: login, password:password};
+
+      fetch("http://localhost:5000/register", {
+        method: 'POST',
+        headers: {
+          'Content-Type': "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => {
+          console.log(res)
+          return res.text()
+        })
+        .then(res => {
+          console.log(res)
+        })
+    }
+
+    
+  </script>
+</body>
+
+</html>
